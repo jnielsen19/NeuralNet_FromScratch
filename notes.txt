@@ -1,0 +1,23 @@
+This Project centers on image classification using the MNIST digit dataset in csv format for ease of use (28x28 greyscale images of handwritten digits)
+    - each image is essentially 784 (28x28) pixel values from 0(complete black)->255(complete white)
+        - this image can be represented as a matrix where each row is an image w/ 784 columns and there are m total rows (# of images in dataset)
+            -> if you take the transpose of this matrix you get each column being an image with 784 rows (could also think a vector of dim=784)
+        
+    - END GOAL: Process this matrix in a way that "spits out" a probability of one of ten classes (integers 0 through 9): prediction
+
+    Project Overview:
+        - building a 2 layer neural network from scratch using no modules except numpy
+            - input layer (zeroth layer because their are no adjustable parameters) : 784 nodes corresponding to the greyscale value of each pixel in the 28x28 image
+            - hidden layer (1st layer): 10 nodes
+            - output layer (2nd layer): 10 units corresponding to a digit that can be predicted
+
+        - 3 Parts to the training of this particular network (run iteritively):
+            1. Forward Propogation:
+                - simple step -> running image through the network to see what output is
+                (see goodnotes document for math)
+            2. Backwards Propogtion:
+                - identifying the errors by initially converting label of image to one hot encoded (vector of m-dimension, where m represents # of 
+                    possible predictions and all values are 0 except for correct which = 1)
+                - after turning label into 1-hot encoding -> identify the error / cost of each of the weights and balances in the 2 layers (math is shown in notes)
+            3. Alter the Parameters:
+                - Subtract the product deravitive of the error from the specific parameter and the learning rate (hyper-parameter) from the previous value of that parameter(weight/bias)
